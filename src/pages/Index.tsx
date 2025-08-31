@@ -18,9 +18,9 @@ const Index = () => {
         <div className="flex-1 flex flex-col">
           <DashboardHeader />
           
-          <main className="flex-1 p-6 space-y-6">
+          <main className="flex-1 p-3 sm:p-6 space-y-4 sm:space-y-6">
             {/* Status Overview */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
               <StatusCard
                 title="Active Agents"
                 value={12} 
@@ -60,7 +60,7 @@ const Index = () => {
             </div>
 
             {/* Performance Chart */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-6">
               <PerformanceChart />
               <RecentActivity />
             </div>
@@ -69,7 +69,7 @@ const Index = () => {
             <AgentTable />
 
             {/* Tool Analytics and Execution Timeline */}
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-3 sm:gap-6">
               <div>
                 <ToolUsageChart />
               </div>

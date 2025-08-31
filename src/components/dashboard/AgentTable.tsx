@@ -95,22 +95,23 @@ export function AgentTable() {
                 placeholder="Search agents..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 w-64"
+                className="pl-10 w-full sm:w-64"
               />
             </div>
           </div>
         </div>
       </CardHeader>
-      <CardContent>
-        <Table>
+      <CardContent className="p-0 sm:p-6">
+        <div className="overflow-x-auto">
+          <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Agent Name</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Last Run</TableHead>
-              <TableHead>Success Rate</TableHead>
-              <TableHead>Tools</TableHead>
-              <TableHead>Plans</TableHead>
+              <TableHead className="w-[140px]">Agent Name</TableHead>
+              <TableHead className="w-[100px]">Status</TableHead>
+              <TableHead className="hidden md:table-cell w-[120px]">Last Run</TableHead>
+              <TableHead className="w-[120px]">Success Rate</TableHead>
+              <TableHead className="hidden lg:table-cell w-[160px]">Tools</TableHead>
+              <TableHead className="hidden sm:table-cell w-[80px]">Plans</TableHead>
               <TableHead className="w-[70px]">Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -126,19 +127,19 @@ export function AgentTable() {
                     {agent.status}
                   </Badge>
                 </TableCell>
-                <TableCell className="text-muted-foreground">{agent.lastRun}</TableCell>
+                <TableCell className="text-muted-foreground hidden md:table-cell">{agent.lastRun}</TableCell>
                 <TableCell>
                   <div className="flex items-center gap-2">
-                    <div className="w-16 h-2 bg-muted rounded-full overflow-hidden">
+                    <div className="w-12 sm:w-16 h-2 bg-muted rounded-full overflow-hidden">
                       <div 
                         className="h-full bg-success rounded-full transition-all"
                         style={{ width: `${agent.success_rate}%` }}
                       />
                     </div>
-                    <span className="text-sm">{agent.success_rate}%</span>
+                    <span className="text-xs sm:text-sm">{agent.success_rate}%</span>
                   </div>
                 </TableCell>
-                <TableCell>
+                <TableCell className="hidden lg:table-cell">
                   <div className="flex gap-1 flex-wrap">
                     {agent.tools.slice(0, 2).map((tool) => (
                       <Badge key={tool} variant="secondary" className="text-xs">
@@ -152,7 +153,7 @@ export function AgentTable() {
                     )}
                   </div>
                 </TableCell>
-                <TableCell>{agent.plan_count}</TableCell>
+                <TableCell className="hidden sm:table-cell">{agent.plan_count}</TableCell>
                 <TableCell>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -180,6 +181,7 @@ export function AgentTable() {
             ))}
           </TableBody>
         </Table>
+        </div>
       </CardContent>
     </Card>
   )

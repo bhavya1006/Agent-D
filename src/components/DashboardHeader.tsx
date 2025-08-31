@@ -16,28 +16,28 @@ import { SidebarTrigger } from "@/components/ui/sidebar"
 export function DashboardHeader() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="flex h-16 items-center px-6 gap-4">
+      <div className="flex h-16 items-center px-3 sm:px-6 gap-2 sm:gap-4">
         <SidebarTrigger className="text-muted-foreground hover:text-foreground" />
         
-        <div className="flex-1 flex items-center gap-4">
+        <div className="flex-1 flex items-center gap-2 md:gap-4">
           {/* Search */}
           <div className="relative flex-1 max-w-md">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
             <Input 
-              placeholder="Search agents, plans, or tools..." 
+              placeholder="Search..." 
               className="pl-10 bg-muted/50 border-border"
             />
           </div>
 
-          {/* Quick Filters */}
-          <Button variant="outline" size="sm" className="gap-2">
+          {/* Quick Filters - Hidden on mobile */}
+          <Button variant="outline" size="sm" className="gap-2 hidden sm:flex">
             <Filter className="w-4 h-4" />
-            Filters
+            <span className="hidden md:inline">Filters</span>
           </Button>
         </div>
 
         {/* Right side actions */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1 sm:gap-3">
           {/* Notifications */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -72,8 +72,8 @@ export function DashboardHeader() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* Settings */}
-          <Button variant="ghost" size="sm">
+          {/* Settings - Hidden on mobile */}
+          <Button variant="ghost" size="sm" className="hidden sm:flex">
             <Settings className="w-4 h-4" />
           </Button>
 
