@@ -31,6 +31,12 @@ export function PerformanceChart() {
                 className="text-muted-foreground"
                 fontSize={12}
               />
+              <YAxis 
+                yAxisId="right"
+                orientation="right"
+                className="text-muted-foreground"
+                fontSize={12}
+              />
               <Tooltip 
                 contentStyle={{
                   backgroundColor: 'hsl(var(--popover))',
