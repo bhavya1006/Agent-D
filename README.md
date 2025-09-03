@@ -2,7 +2,7 @@
 
 Modern, real-time backend for the Agent D dashboard, supporting agent management, performance tracking, execution timelines, activity feeds, and tool usage analytics.
 
-![Sample WireFrame](image.png)
+![Sample WireFrame](public/wireframe%20idea.png)
 
 ### Tech Stack
 
