@@ -1,42 +1,108 @@
-# Welcome to your Lovable project
+# MindGrid UI Dashboard
 
-## Project info
+## Overview
 
-**URL**: https://lovable.dev/projects/e87616a3-53bd-4efe-8a7d-cbd97145a902
+MindGrid UI is a modern, responsive dashboard application designed to visualize and manage agent performance, execution timelines, recent activities, and tool usage. Built with React, TypeScript, Vite, and Tailwind CSS, it provides a clean and intuitive interface for monitoring and interacting with data.
 
-## How can I edit this code?
+## Project Goals
 
-There are several ways of editing your application.
+- Deliver a user-friendly dashboard for agent and tool management
+- Visualize key metrics and activities in real-time
+- Support extensibility for new components and data sources
+- Ensure high performance and accessibility
 
-**Use Lovable**
+## Key Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/e87616a3-53bd-4efe-8a7d-cbd97145a902) and start prompting.
+- Agent performance tracking
+- Execution timeline visualization
+- Recent activity feed
+- Tool usage analytics
+- Sidebar navigation and header controls
+- Modular UI components (cards, charts, tables, etc.)
 
-Changes made via Lovable will be committed automatically to this repo.
+## Getting Started
 
-**Use your preferred IDE**
+### Prerequisites
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Node.js (v18 or higher recommended)
+- npm or bun package manager
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Installation
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```bash
+git clone <your-repo-url>
+cd mindgrid-ui
+npm install # or bun install
 ```
 
-**Edit a file directly in GitHub**
+### Running the Project
+
+```bash
+npm run dev # or bun run dev
+```
+
+Open your browser and navigate to `http://localhost:5173` (default Vite port).
+
+## Project Structure
+
+- `src/components/` - Reusable UI components
+- `src/pages/` - Main application pages
+- `src/hooks/` - Custom React hooks
+- `src/lib/` - Utility functions
+- `public/` - Static assets
+
+## Documentation
+
+### Project Structure
+
+- `src/components/` - Reusable UI components
+- `src/pages/` - Main application pages
+- `src/hooks/` - Custom React hooks
+- `src/lib/` - Utility functions
+- `public/` - Static assets
+
+### Component Usage
+
+- Each UI component is documented with props and usage examples in the source files.
+- For custom components, refer to the comments and TypeScript types for guidance.
+
+### Extending the Dashboard
+
+- Add new components to `src/components/`
+- Create new pages in `src/pages/`
+- Use hooks from `src/hooks/` for shared logic
+
+### Styling
+
+- Tailwind CSS is used for rapid UI development and customization.
+- Global styles are in `src/index.css` and `src/App.css`.
+
+---
+
+## Tech Stack
+
+This project is built with:
+
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
+
+## Contributing
+
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/your-feature`)
+3. Commit your changes
+4. Open a pull request
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+For more details, see the source code and inline documentation.
 
 - Navigate to the desired file(s).
 - Click the "Edit" button (pencil icon) at the top right of the file view.
@@ -60,14 +126,58 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## What is MindGrid UI and Why Does It Exist?
 
-Simply open [Lovable](https://lovable.dev/projects/e87616a3-53bd-4efe-8a7d-cbd97145a902) and click on Share -> Publish.
+MindGrid UI is designed to solve the challenge of monitoring, analyzing, and managing multiple agents and tools in complex environments. In many organizations, teams rely on various automated agents and tools to perform tasks, but lack a unified interface to track their performance, visualize execution timelines, and understand tool usage patterns.
 
-## Can I connect a custom domain to my Lovable project?
+MindGrid UI provides:
 
-Yes, you can!
+- A centralized dashboard for real-time insights into agent activities and tool usage.
+- Visualizations that help teams quickly identify bottlenecks, trends, and recent activities.
+- Modular components that allow easy extension and integration with new data sources or business logic.
+- A foundation for building advanced analytics and management features for operational excellence.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+The goal is to empower users—whether developers, managers, or analysts—to make informed decisions, improve efficiency, and maintain transparency across automated processes.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## Example Usage
+
+Here is a conceptual overview of the MindGrid UI dashboard layout:
+
+```
+------------------------------------------------------
+| Sidebar |         Main Dashboard Panel              |
+|---------|------------------------------------------|
+| Agents  |  [Agent Performance Chart]                |
+| Tools   |  [Execution Timeline]                    |
+| Activity|  [Recent Activity Table]                  |
+| ...     |  [Tool Usage Analytics]                   |
+------------------------------------------------------
+```
+
+- **Sidebar**: Navigate between dashboard sections (Agents, Tools, Activity, etc.)
+- **Main Panel**: Visualizes agent performance, execution timelines, recent activities, and tool usage.
+- **Cards/Tables/Charts**: Summarize key metrics and statuses for quick insights.
+
+### Example: Agent Performance Table
+
+| Agent Name | Status | Tasks Completed | Last Active        |
+| ---------- | ------ | --------------- | ------------------ |
+| Agent A    | Active | 120             | 2025-09-03 10:15AM |
+| Agent B    | Idle   | 98              | 2025-09-03 09:50AM |
+| Agent C    | Error  | 45              | 2025-09-03 08:30AM |
+
+This table helps users quickly assess which agents are performing well, which are idle, and which may need attention.
+
+### Example: Tool Usage Chart (Conceptual)
+
+```
+Tool Usage (Bar Chart)
+
+Tool X | ██████████████ 80 uses
+Tool Y | ████████       40 uses
+Tool Z | ████           15 uses
+```
+
+This conceptual chart shows which tools are most frequently used, helping teams optimize resources and identify popular or underutilized tools.
+
+These examples illustrate how MindGrid UI helps users quickly understand system status and performance at a glance.
