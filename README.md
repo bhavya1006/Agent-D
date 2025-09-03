@@ -1,8 +1,8 @@
-# MindGrid UI Dashboard
+# Agent D Dashboard
 
 ## Overview
 
-MindGrid UI is a modern, responsive dashboard application designed to visualize and manage agent performance, execution timelines, recent activities, and tool usage. Built with React, TypeScript, Vite, and Tailwind CSS, it provides a clean and intuitive interface for monitoring and interacting with data.
+Agent D is a modern, responsive dashboard application designed to visualize and manage agent performance, execution timelines, recent activities, and tool usage. Built with React, TypeScript, Vite, Tailwind CSS, and shadcn-ui, it provides a clean and intuitive interface for monitoring and interacting with data.
 
 ## Project Goals
 
@@ -20,6 +20,16 @@ MindGrid UI is a modern, responsive dashboard application designed to visualize 
 - Sidebar navigation and header controls
 - Modular UI components (cards, charts, tables, etc.)
 
+## Tech Stack
+
+Agent D uses the following technologies:
+
+- Vite
+- TypeScript
+- React
+- Tailwind CSS
+- shadcn-ui
+
 ## Getting Started
 
 ### Prerequisites
@@ -31,7 +41,7 @@ MindGrid UI is a modern, responsive dashboard application designed to visualize 
 
 ```bash
 git clone <your-repo-url>
-cd mindgrid-ui
+cd Agent-D
 npm install # or bun install
 ```
 
@@ -79,16 +89,6 @@ Open your browser and navigate to `http://localhost:5173` (default Vite port).
 
 ---
 
-## Tech Stack
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
 ## Contributing
 
 1. Fork the repository
@@ -116,32 +116,9 @@ For more details, see the source code and inline documentation.
 - Click on "New codespace" to launch a new Codespace environment.
 - Edit files directly within the Codespace and commit and push your changes once you're done.
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## What is MindGrid UI and Why Does It Exist?
-
-MindGrid UI is designed to solve the challenge of monitoring, analyzing, and managing multiple agents and tools in complex environments. In many organizations, teams rely on various automated agents and tools to perform tasks, but lack a unified interface to track their performance, visualize execution timelines, and understand tool usage patterns.
-
-MindGrid UI provides:
-
-- A centralized dashboard for real-time insights into agent activities and tool usage.
-- Visualizations that help teams quickly identify bottlenecks, trends, and recent activities.
-- Modular components that allow easy extension and integration with new data sources or business logic.
-- A foundation for building advanced analytics and management features for operational excellence.
-
-The goal is to empower users—whether developers, managers, or analysts—to make informed decisions, improve efficiency, and maintain transparency across automated processes.
-
 ## Example Usage
 
-Here is a conceptual overview of the MindGrid UI dashboard layout:
+Here is a conceptual overview of the Agent D dashboard layout:
 
 ```
 ------------------------------------------------------
@@ -180,4 +157,4 @@ Tool Z | ████           15 uses
 
 This conceptual chart shows which tools are most frequently used, helping teams optimize resources and identify popular or underutilized tools.
 
-These examples illustrate how MindGrid UI helps users quickly understand system status and performance at a glance.
+These examples illustrate how Agent D helps users quickly understand system status and performance at a glance.

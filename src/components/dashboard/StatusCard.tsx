@@ -13,19 +13,19 @@ interface StatusCardProps {
   description?: string
 }
 
-export function StatusCard({ 
-  title, 
-  value, 
-  change, 
-  changeType = 'neutral', 
-  icon: Icon, 
+export function StatusCard({
+  title,
+  value,
+  change,
+  changeType = 'neutral',
+  icon: Icon,
   variant = 'default',
-  description 
+  description
 }: StatusCardProps) {
   const variantStyles = {
     default: "border-border bg-card",
     success: "border-success/20 bg-success/5",
-    warning: "border-warning/20 bg-warning/5", 
+    warning: "border-warning/20 bg-warning/5",
     destructive: "border-destructive/20 bg-destructive/5"
   }
 
@@ -43,30 +43,46 @@ export function StatusCard({
   }
 
   return (
-    <Card className={cn("shadow-card hover:shadow-elevated transition-all duration-300", variantStyles[variant])}>
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium text-muted-foreground">
-          {title}
+    <Card className={cn(
+      "transition-all duration-200 hover:shadow-md",
+      variantStyles[variant]
+    )}>
+      <CardHeader className="pb-2 sm:pb-3">
+        <CardTitle className="flex items-center justify-between text-sm sm:text-base font-medium">
+          <span className="truncate pr-2">{title}</span>
+          <Icon className={cn(
+            "h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0",
+            iconStyles[variant]
+          )} />
         </CardTitle>
-        <Icon className={cn("h-4 w-4", iconStyles[variant])} />
       </CardHeader>
-      <CardContent>
-        <div className="flex items-end justify-between">
-          <div>
-            <div className="text-2xl font-bold text-card-foreground">{value}</div>
-            {description && (
-              <p className="text-xs text-muted-foreground mt-1">{description}</p>
-            )}
-          </div>
-          {change && (
-            <Badge 
-              variant="secondary" 
-              className={cn("text-xs", changeStyles[changeType])}
+
+      <CardContent className="pt-0 space-y-1 sm:space-y-2">
+        <div className="flex items-baseline gap-2">
+          <span className="text-xl sm:text-2xl lg:text-3xl font-bold leading-none">
+            {value}
+          </span>
+        </div>
+
+        {description && (
+          <p className="text-xs sm:text-sm text-muted-foreground leading-tight">
+            {description}
+          </p>
+        )}
+
+        {change && (
+          <div className="pt-1">
+            <Badge
+              variant="outline"
+              className={cn(
+                "text-xs font-normal px-2 py-0.5 h-auto",
+                changeStyles[changeType]
+              )}
             >
               {change}
             </Badge>
-          )}
-        </div>
+          </div>
+        )}
       </CardContent>
     </Card>
   )

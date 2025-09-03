@@ -1,3 +1,5 @@
+// index.tsx
+
 import { SidebarProvider } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/AppSidebar"
 import { DashboardHeader } from "@/components/DashboardHeader"
@@ -12,18 +14,16 @@ import { Bot, Activity, Clock, CheckCircle, AlertCircle } from "lucide-react"
 const Index = () => {
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex w-full bg-background">
+      <div className="flex min-h-screen w-full bg-background">
         <AppSidebar />
-        
-        <div className="flex-1 flex flex-col">
+        <div className="flex-1 flex flex-col w-full min-w-0">
           <DashboardHeader />
-          
-          <main className="flex-1 p-3 sm:p-6 space-y-4 sm:space-y-6">
+          <main className="flex-1 p-3 sm:p-4 md:p-6 lg:p-8 space-y-4 sm:space-y-6 overflow-auto">
             {/* Status Overview */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
               <StatusCard
                 title="Active Agents"
-                value={12} 
+                value="12"
                 change="+2 from yesterday"
                 changeType="increase"
                 icon={Bot}
@@ -31,49 +31,57 @@ const Index = () => {
                 description="Currently running"
               />
               <StatusCard
-                title="Plans Executing"
-                value={8}
-                change="+3 from last hour"
-                changeType="increase" 
-                icon={Activity}
-                variant="default"
-                description="In progress now"
-              />
-              <StatusCard
-                title="Completed Today"
-                value={47}
-                change="+12% success rate"
+                title="Tasks Completed"
+                value="1,247"
+                change="+15% this week"
                 changeType="increase"
                 icon={CheckCircle}
-                variant="success"
-                description="Plans finished"
+                variant="default"
+                description="Successfully executed"
               />
               <StatusCard
-                title="Avg Execution Time"
-                value="1.4s"
-                change="-0.2s improvement"
+                title="Avg Response Time"
+                value="1.2s"
+                change="-0.3s improvement"
                 changeType="increase"
                 icon={Clock}
+                variant="success"
+                description="System performance"
+              />
+              <StatusCard
+                title="Error Rate"
+                value="2.1%"
+                change="+0.5% from last week"
+                changeType="decrease"
+                icon={AlertCircle}
                 variant="warning"
-                description="Per plan step"
+                description="Needs attention"
               />
             </div>
 
             {/* Performance Chart */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-6">
+            <div className="w-full">
               <PerformanceChart />
-              <RecentActivity />
             </div>
 
-            {/* Agent Management */}
-            <AgentTable />
+            {/* AgentTable and RecentActivity balanced for desktop */}
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 sm:gap-6">
+              <div className="w-full min-w-0 xl:col-span-2">
+                <AgentTable />
+              </div>
+              <div className="w-full min-w-0 xl:col-span-1">
+                <RecentActivity />
+              </div>
+            </div>
 
-            {/* Tool Analytics and Execution Timeline */}
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-3 sm:gap-6">
-              <div>
+            {/* ToolUsageChart and ExecutionTimeline balanced for desktop */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+              <div className="w-full min-w-0 lg:col-span-2">
                 <ToolUsageChart />
               </div>
-              <ExecutionTimeline />
+              <div className="w-full min-w-0 lg:col-span-1">
+                <ExecutionTimeline />
+              </div>
             </div>
           </main>
         </div>

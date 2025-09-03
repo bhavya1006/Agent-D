@@ -18,13 +18,13 @@ export function DashboardHeader() {
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex h-16 items-center px-3 sm:px-6 gap-2 sm:gap-4">
         <SidebarTrigger className="text-muted-foreground hover:text-foreground" />
-        
+
         <div className="flex-1 flex items-center gap-2 md:gap-4">
           {/* Search */}
           <div className="relative flex-1 max-w-md">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-            <Input 
-              placeholder="Search..." 
+            <Input
+              placeholder="Search..."
               className="pl-10 bg-muted/50 border-border"
             />
           </div>

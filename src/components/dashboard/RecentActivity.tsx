@@ -21,7 +21,7 @@ const recentActivities: Activity[] = [
     details: "Processed 1,247 records"
   },
   {
-    id: "2", 
+    id: "2",
     agent: "WebAnalyzer",
     action: "Authentication renewed",
     status: "success",
@@ -31,7 +31,7 @@ const recentActivities: Activity[] = [
     id: "3",
     agent: "EmailBot",
     action: "SMTP connection failed",
-    status: "error", 
+    status: "error",
     timestamp: "8 minutes ago",
     details: "Connection timeout after 30s"
   },
@@ -92,30 +92,30 @@ export function RecentActivity() {
         <div className="space-y-4">
           {recentActivities.map((activity) => {
             const StatusIcon = statusConfig[activity.status].icon
-            
+
             return (
               <div key={activity.id} className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
                 <div className="flex-shrink-0 mt-0.5">
                   <StatusIcon className="w-4 h-4 text-muted-foreground" />
                 </div>
-                
+
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
                     <span className="font-medium text-sm">{activity.agent}</span>
-                    <Badge 
-                      variant="outline" 
+                    <Badge
+                      variant="outline"
                       className={statusConfig[activity.status].variant}
                     >
                       {activity.status}
                     </Badge>
                   </div>
-                  
+
                   <p className="text-sm text-foreground mb-1">{activity.action}</p>
-                  
+
                   {activity.details && (
                     <p className="text-xs text-muted-foreground mb-2">{activity.details}</p>
                   )}
-                  
+
                   <p className="text-xs text-muted-foreground">{activity.timestamp}</p>
                 </div>
               </div>
