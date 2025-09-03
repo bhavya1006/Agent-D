@@ -92,7 +92,7 @@ export function DashboardHeader() {
                 <div className="flex flex-col space-y-1">
                   <p className="text-sm font-medium leading-none">Nixtio</p>
                   <p className="text-xs leading-none text-muted-foreground">
-                    admin@mindgrid.ai
+                    admin@agentd.ai
                   </p>
                 </div>
               </DropdownMenuLabel>

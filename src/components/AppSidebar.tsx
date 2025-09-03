@@ -69,7 +69,7 @@ export function AppSidebar() {
         {!collapsed && (
           <div className="flex flex-col">
             <h1 className="text-base sm:text-lg font-bold text-sidebar-foreground">
-              MindGrid
+              Agent D
             </h1>
             <p className="text-xs text-sidebar-foreground/60">
               AI Agent Hub
