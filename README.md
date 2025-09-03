@@ -1,160 +1,154 @@
-# Agent D Dashboard
+## Agent D Backend
 
-## Overview
+Modern, real-time backend for the Agent D dashboard, supporting agent management, performance tracking, execution timelines, activity feeds, and tool usage analytics.
 
-Agent D is a modern, responsive dashboard application designed to visualize and manage agent performance, execution timelines, recent activities, and tool usage. Built with React, TypeScript, Vite, Tailwind CSS, and shadcn-ui, it provides a clean and intuitive interface for monitoring and interacting with data.
+### Tech Stack
 
-## Project Goals
+- **FastAPI** (Python) – REST API and WebSock­et support
+- **PostgreSQL** – Database
+- **SQLAlchemy** – ORM Models
+- **Redis** (optional) – Caching, async queues
+- **WebSockets** – Live updates for dashboard events
 
-- Deliver a user-friendly dashboard for agent and tool management
-- Visualize key metrics and activities in real-time
-- Support extensibility for new components and data sources
-- Ensure high performance and accessibility
+***
 
-## Key Features
+## Database Schema
 
-- Agent performance tracking
-- Execution timeline visualization
-- Recent activity feed
-- Tool usage analytics
-- Sidebar navigation and header controls
-- Modular UI components (cards, charts, tables, etc.)
+**Agents Table**
 
-## Tech Stack
 
-Agent D uses the following technologies:
+| Field | Type | Description |
+| :-- | :-- | :-- |
+| id | UUID (PK) | Unique agent ID |
+| name | String | Agent display name |
+| status | String | ‘active’, ‘inactive’, ‘error’ |
+| last_active | DateTime | Timestamp of last activity |
+| tasks_done | Integer | Completed tasks |
 
-- Vite
-- TypeScript
-- React
-- Tailwind CSS
-- shadcn-ui
+**Tools Table**
 
-## Getting Started
 
-### Prerequisites
+| Field | Type | Description |
+| :-- | :-- | :-- |
+| id | UUID (PK) | Unique tool ID |
+| name | String | Display name |
+| usage_count | Integer | Times used |
 
-- Node.js (v18 or higher recommended)
-- npm or bun package manager
+**AgentToolUsage Table**
 
-### Installation
+- Tracks which agent used which tool, and when.
 
-```bash
-git clone <your-repo-url>
-cd Agent-D
-npm install # or bun install
+| Field | Type | Description |
+| :-- | :-- | :-- |
+| id | UUID (PK) | Row ID |
+| agent_id | UUID (FK) | Agent |
+| tool_id | UUID (FK) | Tool |
+| used_at | DateTime | When used |
+
+**Activity Table**
+
+
+| Field | Type | Description |
+| :-- | :-- | :-- |
+| id | UUID (PK) | Row ID |
+| agent_id | UUID (FK) | Agent |
+| activity_type | String | E.g. ‘start’, ‘error’ |
+| details | Text/JSON | Additional info |
+| ts_created | DateTime | When happened |
+
+**Execution Table**
+
+
+| Field | Type | Description |
+| :-- | :-- | :-- |
+| id | UUID (PK) | Execution ID |
+| agent_id | UUID (FK) | Agent |
+| status | String | 'running', 'complete' |
+| started_at | DateTime | When started |
+| finished_at | DateTime | When finished |
+| steps | JSON | Timeline steps |
+
+
+***
+
+## API Routes
+
+| Route | Method | Description |
+| :-- | :-- | :-- |
+| `/api/agents` | GET | List all agents |
+| `/api/agents` | POST | Add a new agent |
+| `/api/agents/{id}` | GET | Get agent detail |
+| `/api/agents/{id}` | PUT | Update agent |
+| `/api/agents/{id}` | DELETE | Delete agent |
+| `/api/agents/{id}/executions` | GET | List executions for one agent |
+| `/api/agents/{id}/activity` | GET | Recent activity for one agent |
+| `/api/tools` | GET | List all tools |
+| `/api/tools/{id}` | GET | Tool detail |
+| `/api/tools/{id}/usage` | GET | Usage history |
+| `/api/activity` | GET | Full activity feed (dashboard table) |
+| `/api/executions/{id}` | GET | Get execution details (timeline) |
+| `/api/analytics/performance` | GET | Agent performance over time |
+| `/api/analytics/tool-usage` | GET | Tool usage analytics |
+| `/ws/activity` | WS | WebSocket for live dashboard updates |
+
+
+***
+
+## Example Minimal FastAPI App Structure
+
+```
+agent_d_backend/
+├── app/
+│   ├── main.py                 # FastAPI app
+│   ├── models.py               # SQLAlchemy ORM models
+│   ├── schemas.py              # Pydantic schemas
+│   ├── api/                    # Routers (agents, tools, activities, analytics)
+│   ├── database.py             # DB initialization
+│   ├── websocket.py            # Real-time event streaming
+│   ├── services/               # Business logic
+├── tests/                      # Unit/integration tests
+├── requirements.txt
+├── Dockerfile                  # Container setup
+├── .env.example                # Environment variables
 ```
 
-### Running the Project
+
+***
+
+## Quick Start
 
 ```bash
-npm run dev # or bun run dev
+# Install dependencies
+pip install -r requirements.txt
+
+# Setup database
+# (use alembic for migrations or manual SQL scripts)
+
+# Run app
+uvicorn app.main:app --reload
+
+# API docs available at /docs
 ```
 
-Open your browser and navigate to `http://localhost:5173` (default Vite port).
 
-## Project Structure
+***
 
-- `src/components/` - Reusable UI components
-- `src/pages/` - Main application pages
-- `src/hooks/` - Custom React hooks
-- `src/lib/` - Utility functions
-- `public/` - Static assets
+## Frontend Integration
 
-## Documentation
+- Fetch data and listen for live updates using the documented REST and WS endpoints.
+- UI elements (cards, charts, tables) just consume light, normalized JSON.
 
-### Project Structure
+***
 
-- `src/components/` - Reusable UI components
-- `src/pages/` - Main application pages
-- `src/hooks/` - Custom React hooks
-- `src/lib/` - Utility functions
-- `public/` - Static assets
+## Extend \& Contribute
 
-### Component Usage
+- Add new agents, tools, or analytics features in `/app/services/`.
+- Register additional endpoints in `/app/api/`.
+- Keep UI/data structures lightweight and easy to test.
+- Use Pydantic schemas for data validation.
 
-- Each UI component is documented with props and usage examples in the source files.
-- For custom components, refer to the comments and TypeScript types for guidance.
-
-### Extending the Dashboard
-
-- Add new components to `src/components/`
-- Create new pages in `src/pages/`
-- Use hooks from `src/hooks/` for shared logic
-
-### Styling
-
-- Tailwind CSS is used for rapid UI development and customization.
-- Global styles are in `src/index.css` and `src/App.css`.
-
----
-
-## Contributing
-
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature/your-feature`)
-3. Commit your changes
-4. Open a pull request
+***
 
 ## License
 
-This project is licensed under the MIT License.
-
----
-
-For more details, see the source code and inline documentation.
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## Example Usage
-
-Here is a conceptual overview of the Agent D dashboard layout:
-
-```
-------------------------------------------------------
-| Sidebar |         Main Dashboard Panel              |
-|---------|------------------------------------------|
-| Agents  |  [Agent Performance Chart]                |
-| Tools   |  [Execution Timeline]                    |
-| Activity|  [Recent Activity Table]                  |
-| ...     |  [Tool Usage Analytics]                   |
-------------------------------------------------------
-```
-
-- **Sidebar**: Navigate between dashboard sections (Agents, Tools, Activity, etc.)
-- **Main Panel**: Visualizes agent performance, execution timelines, recent activities, and tool usage.
-- **Cards/Tables/Charts**: Summarize key metrics and statuses for quick insights.
-
-### Example: Agent Performance Table
-
-| Agent Name | Status | Tasks Completed | Last Active        |
-| ---------- | ------ | --------------- | ------------------ |
-| Agent A    | Active | 120             | 2025-09-03 10:15AM |
-| Agent B    | Idle   | 98              | 2025-09-03 09:50AM |
-| Agent C    | Error  | 45              | 2025-09-03 08:30AM |
-
-This table helps users quickly assess which agents are performing well, which are idle, and which may need attention.
-
-### Example: Tool Usage Chart (Conceptual)
-
-```
-Tool Usage (Bar Chart)
-
-Tool X | ██████████████ 80 uses
-Tool Y | ████████       40 uses
-Tool Z | ████           15 uses
-```
-
-This conceptual chart shows which tools are most frequently used, helping teams optimize resources and identify popular or underutilized tools.
-
-These examples illustrate how Agent D helps users quickly understand system status and performance at a glance.
+MIT License. See full details in this repository.
